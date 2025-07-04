@@ -1,1 +1,0 @@
-/usr/bin/cc -Xlinker --dependency-file=CMakeFiles/gamejam.dir/link.d CMakeFiles/gamejam.dir/src/main.c.o -o Debug/gamejam  /home/infra/Documentos/c/gamejam/vendor/linux/lib/libraylib.a -lm

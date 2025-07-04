@@ -1,3 +1,0 @@
-/home/infra/Documentos/c/gamejam/build/CMakeFiles/gamejam.dir
-/home/infra/Documentos/c/gamejam/build/CMakeFiles/edit_cache.dir
-/home/infra/Documentos/c/gamejam/build/CMakeFiles/rebuild_cache.dir
