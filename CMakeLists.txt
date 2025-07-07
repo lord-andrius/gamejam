@@ -13,7 +13,16 @@ else()
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build/Debug)
 endif()
 
-add_executable(gamejam  src/main.c src/estruturas/array_dinamico.c)
+file(COPY assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+
+add_executable(
+    gamejam
+    src/main.c
+    src/estruturas/array_dinamico.c
+    src/entidade/gerenciador_entidades.c
+    src/entidade/jogador.c
+    src/sistemas/sistema_grafico.c
+)
 add_executable(
         testes
         # arquivo principal dos testes
@@ -24,6 +33,7 @@ add_executable(
         #dependencias
         src/estruturas/array_dinamico.c
         src/entidade/gerenciador_entidades.c
+        src/sistemas/sistema_grafico.c
 )
 
 if (WIN32)

@@ -18,6 +18,7 @@ typedef struct Gerenciador_Entidades {
     // componentes
     Array_Dinamico *Retangulo;
     Array_Dinamico *Corpo;
+    Array_Dinamico *Textura;
 } Gerenciador_Entidades;
 
 
@@ -26,11 +27,15 @@ typedef struct Entidade {
     // componentes
     Rectangle     Retangulo;
     Corpo         Corpo;
+    Texture       Textura;
 } Entidade;
+
 
 
 void criar_nova_entidade(Entidade *entidade);
 void pegar_entidade(Entidade *entidade, size_t id);
+void atualizar_entidade(Entidade *entidade);
+Gerenciador_Entidades *pegar_gerenciador_entidades(void);
 
 //void deletar_entidade(Entidade *entidade);
 

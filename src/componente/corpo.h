@@ -5,7 +5,7 @@
 typedef struct Corpo {
     Vector2 Velocidade;
     Vector2 Aceleracao;
-    double  Pesoa;
+    double  Peso;
 } Corpo;
 
 #endif

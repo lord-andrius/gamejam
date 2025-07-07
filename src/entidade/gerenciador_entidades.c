@@ -18,20 +18,23 @@ void criar_nova_entidade(Entidade *entidade)
         gerenciador_entidades.Entidade_Info = criar_array_dinamico(sizeof(Entidade_Info));
         gerenciador_entidades.Retangulo = criar_array_dinamico(sizeof(Rectangle));
         gerenciador_entidades.Corpo = criar_array_dinamico(sizeof(Corpo));
-
+        gerenciador_entidades.Textura = criar_array_dinamico(sizeof(Texture));
 
         assert(gerenciador_entidades.Entidade_Info != NULL);
         assert(gerenciador_entidades.Retangulo != NULL);
         assert(gerenciador_entidades.Corpo != NULL);
+        assert(gerenciador_entidades.Textura != NULL);
     }
 
     adicionar_item_array_dinamico(gerenciador_entidades.Entidade_Info, gerenciador_entidades.Entidade_Info->tamanho, &(Entidade_Info){.id = contador++, .bit_set_componentes = 0});
     adicionar_item_array_dinamico(gerenciador_entidades.Retangulo, gerenciador_entidades.Retangulo->tamanho, &(Rectangle){0});
     adicionar_item_array_dinamico(gerenciador_entidades.Corpo, gerenciador_entidades.Corpo->tamanho, &(Corpo){0});
+    adicionar_item_array_dinamico(gerenciador_entidades.Textura, gerenciador_entidades.Textura->tamanho, &(Texture){0});
 
     pegar_posicao_array_dinamico(gerenciador_entidades.Entidade_Info, gerenciador_entidades.Entidade_Info->tamanho - 1, &entidade->Entidade_Info);
     pegar_posicao_array_dinamico(gerenciador_entidades.Retangulo, gerenciador_entidades.Retangulo->tamanho - 1, &entidade->Retangulo);
     pegar_posicao_array_dinamico(gerenciador_entidades.Corpo, gerenciador_entidades.Corpo->tamanho - 1, &entidade->Corpo);
+    pegar_posicao_array_dinamico(gerenciador_entidades.Corpo, gerenciador_entidades.Textura->tamanho - 1, &entidade->Textura);
 }
 
 static size_t indice_da_entidade(Entidade *entidade)
@@ -66,4 +69,21 @@ void pegar_entidade(Entidade *entidade, size_t id)
     pegar_posicao_array_dinamico(gerenciador_entidades.Entidade_Info, indice, &entidade->Entidade_Info);
     pegar_posicao_array_dinamico(gerenciador_entidades.Retangulo, indice, &entidade->Retangulo);
     pegar_posicao_array_dinamico(gerenciador_entidades.Corpo, indice, &entidade->Corpo);
+    pegar_posicao_array_dinamico(gerenciador_entidades.Textura, indice, &entidade->Textura);
 }
+
+void atualizar_entidade(Entidade *entidade)
+{
+    size_t indice = indice_da_entidade(entidade);
+    atualizar_posicao_array_dinamico(gerenciador_entidades.Entidade_Info, indice, &entidade->Entidade_Info);
+    atualizar_posicao_array_dinamico(gerenciador_entidades.Retangulo, indice, &entidade->Retangulo);
+    atualizar_posicao_array_dinamico(gerenciador_entidades.Corpo, indice, &entidade->Corpo);
+    atualizar_posicao_array_dinamico(gerenciador_entidades.Textura, indice, &entidade->Textura);
+
+}
+
+Gerenciador_Entidades *pegar_gerenciador_entidades(void)
+{
+    return &gerenciador_entidades;
+}
+

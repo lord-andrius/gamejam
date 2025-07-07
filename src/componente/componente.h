@@ -4,7 +4,8 @@
 
 enum BIT_COMPONENTE {
     BIT_RETANGULO = 1 << 0,
-    BIT_CORPO =     1 << 1,
+    BIT_CORPO     = 1 << 1,
+    BIT_TEXTURA   = 1 << 2,
 };
 
 #endif
