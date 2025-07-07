@@ -7,6 +7,7 @@
 #include "entidade/gerenciador_entidades.h"
 #include "entidade/jogador.h"
 #include "sistemas/sistema_grafico.h"
+#include "sistemas/sistema_fisico.h"
 
 int main(void)
 {
@@ -21,6 +22,7 @@ int main(void)
     while (!WindowShouldClose())
     {
             atualizar_jogador();
+            sistema_fisico();
             BeginDrawing();
             ClearBackground(WHITE);
             sistema_grafico();

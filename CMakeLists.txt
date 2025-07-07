@@ -22,6 +22,8 @@ add_executable(
     src/entidade/gerenciador_entidades.c
     src/entidade/jogador.c
     src/sistemas/sistema_grafico.c
+    src/sistemas/sistema_fisico.c
+    src/assets/assets.c
 )
 add_executable(
         testes
@@ -34,6 +36,7 @@ add_executable(
         src/estruturas/array_dinamico.c
         src/entidade/gerenciador_entidades.c
         src/sistemas/sistema_grafico.c
+
 )
 
 if (WIN32)
