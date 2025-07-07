@@ -4,8 +4,11 @@
 #include "../entidade/gerenciador_entidades.h"
 #include "../componente/componente.h"
 #include "sistema_fisico.h"
+#include "../assets/assets.h"
+#include <math.h>
 
-#define GRAVIDADE 125
+
+#define GRAVIDADE 10
 
 void sistema_fisico(void)
 {
@@ -26,6 +29,8 @@ void sistema_fisico(void)
             continue;
         }
 
+        Vector2 posicaoAnterior = (Vector2){retangulos[i].x,retangulos[i].y};
+
         corpos[i].Aceleracao.y += GRAVIDADE * corpos[i].Peso;
 
         float tempo = GetFrameTime();
@@ -34,5 +39,62 @@ void sistema_fisico(void)
         retangulos[i].y = retangulos[i].y + corpos[i].Velocidade.y * tempo + (corpos[i].Aceleracao.y * (tempo * tempo) / 2);
 
         corpos[i].Velocidade.y += corpos[i].Aceleracao.y * tempo;
+
+        int tileX = 0;
+        int tileY = 0;
+
+
+        for(const char *caractere = *cenarios; *caractere != '\0'; caractere++)
+        {
+            if (*caractere == '-')
+            {
+                Rectangle tile = (Rectangle){tileX, tileY, 80, 80};
+
+                if (CheckCollisionRecs(retangulos[i], tile))
+                {
+                    Rectangle colisao = GetCollisionRec(retangulos[i], tile);
+
+
+                    if (retangulos[i].y >= tile.y && retangulos[i].y <= tile.y + tile.height)
+                    {
+
+
+
+                        if (corpos[i].Velocidade.x >= 0)
+                            retangulos[i].x -= colisao.width;
+                        else
+                            retangulos[i].x += colisao.width;
+
+                        corpos[i].Velocidade.x = 0;
+                        corpos[i].Aceleracao.x = 0;
+
+                    }
+
+                    if (retangulos[i].x >= tile.x && retangulos[i].x <= tile.x + tile.width)
+                    {
+                        if (colisao.height < 79)
+                        {
+                            corpos[i].Velocidade.y = 0;
+                            corpos[i].Aceleracao.y = 0;
+                            retangulos[i].y -= colisao.height;
+                        }
+
+                    }
+
+
+
+                }
+
+            }
+            else if (*caractere == '\n')
+            {
+                tileY += 80;
+                tileX = 0;
+                continue;
+            }
+            tileX += 80;
+        }
+
+
     }
 }

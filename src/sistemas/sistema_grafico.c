@@ -19,8 +19,6 @@ void sistema_grafico(void)
     int tileY = 0;
     for (const char **cenario = cenarios; *cenario != NULL; cenario++)
     {
-        printf("%p\n", cenario);
-
         for(const char *caractere = *cenario; *caractere != '\0'; caractere++)
         {
             //printf("%c", *caractere);
