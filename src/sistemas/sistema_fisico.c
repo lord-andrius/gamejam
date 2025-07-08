@@ -54,13 +54,7 @@ void sistema_fisico(void)
                 {
                     Rectangle colisao = GetCollisionRec(retangulos[i], tile);
 
-                    if (tile.y < retangulos[i].y && corpos[i].Velocidade.y < 0)
-                    {
-                        corpos[i].Aceleracao.y = 0;
-                        corpos[i].Velocidade.y = 0;
-                        retangulos[i].y += colisao.height;
-                        continue;
-                    }
+
 
                     if (tile.y > retangulos[i].y && corpos[i].Velocidade.y > 0)
                     {
