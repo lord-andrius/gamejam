@@ -54,34 +54,40 @@ void sistema_fisico(void)
                 {
                     Rectangle colisao = GetCollisionRec(retangulos[i], tile);
 
-
-                    if (retangulos[i].y >= tile.y && retangulos[i].y <= tile.y + tile.height)
+                    if (tile.y < retangulos[i].y && corpos[i].Velocidade.y < 0)
                     {
+                        corpos[i].Aceleracao.y = 0;
+                        corpos[i].Velocidade.y = 0;
+                        retangulos[i].y += colisao.height;
+                        continue;
+                    }
+
+                    if (tile.y > retangulos[i].y && corpos[i].Velocidade.y > 0)
+                    {
+                        corpos[i].Aceleracao.y = 0;
+                        corpos[i].Velocidade.y = 0;
+                        retangulos[i].y -= colisao.height;
+                        continue;
+                    }
 
 
 
-                        if (corpos[i].Velocidade.x >= 0)
-                            retangulos[i].x -= colisao.width;
-                        else
-                            retangulos[i].x += colisao.width;
 
-                        corpos[i].Velocidade.x = 0;
+                    if (tile.x < retangulos[i].x)
+                    {
                         corpos[i].Aceleracao.x = 0;
-
+                        corpos[i].Velocidade.x = 0;
+                        retangulos[i].x += colisao.width;
+                        continue;
                     }
 
-                    if (retangulos[i].x >= tile.x && retangulos[i].x <= tile.x + tile.width)
+                    if (tile.x > retangulos[i].x)
                     {
-                        if (colisao.height < 79)
-                        {
-                            corpos[i].Velocidade.y = 0;
-                            corpos[i].Aceleracao.y = 0;
-                            retangulos[i].y -= colisao.height;
-                        }
-
+                        corpos[i].Aceleracao.x = 0;
+                        corpos[i].Velocidade.x = 0;
+                        retangulos[i].x -= colisao.width;
+                        continue;
                     }
-
-
 
                 }
 

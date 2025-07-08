@@ -18,7 +18,7 @@ void criar_jogador(Entidade *entidade)
 
     id_do_jogador = entidade->Entidade_Info.id;
 
-    entidade->Retangulo = (Rectangle){650,0,80,80};
+    entidade->Retangulo = (Rectangle){650,0,80,120};
 
     entidade->Corpo = (Corpo) {
       .Velocidade  = (Vector2){0,0},
@@ -51,7 +51,7 @@ void atualizar_jogador(void)
         jogador.Corpo.Velocidade.x = 0;
     }
 
-    if(IsKeyDown(KEY_SPACE))
+    if(IsKeyDown(KEY_UP))
     {
 
         jogador.Corpo.Aceleracao.y = ACELERACAO_INICIAL_PULO + fabs(jogador.Corpo.Aceleracao.y);
